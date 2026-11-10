@@ -1,0 +1,165 @@
+/* ==========================================================================
+   База. Mobile-first: все стили написаны под телефон, десктопных
+   брейкпоинтов нет сознательно.
+   ========================================================================== */
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  /* Системный шрифт первым. В приложении банка интерфейсный текст набран
+     именно системным SF Pro — это видно по цифрам: они совпадают с часами
+     в статус-баре, которые рисует iOS. На iPhone подставится тот же шрифт,
+     без загрузки и без лицензионных вопросов. Inter остаётся запасным для
+     платформ, где SF Pro нет. */
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter',
+    system-ui, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.375;
+  -webkit-font-smoothing: antialiased;
+  /* Горизонтального скролла в мобильном приложении быть не должно */
+  overflow-x: hidden;
+  /* Отключаем подсветку тапа — приложение, а не веб-страница */
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  outline: none;
+}
+
+svg {
+  display: block;
+  flex: none;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+/* --- Типографика ---------------------------------------------------------- */
+.t-display {
+  font-size: 40px;
+  line-height: 44px;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+}
+.t-h1 {
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+.t-h2 {
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+.t-h3 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+.t-body {
+  font-size: 16px;
+  line-height: 22px;
+}
+.t-body-m {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+}
+.t-sub {
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--text-2);
+}
+.t-cap {
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--muted);
+}
+.t-micro {
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 500;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+.pos {
+  color: var(--green);
+}
+.neg {
+  color: var(--red);
+}
+
+/* --- Каркас экрана --------------------------------------------------------
+   Full-bleed: приложение занимает весь вьюпорт, рамки телефона нет.
+   100dvh, а не 100vh — иначе панель Safari срезает низ экрана.
+   -------------------------------------------------------------------------- */
+.screen {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--safe-top);
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
+}
+
+.screen-content {
+  flex: 1;
+}
+
+/* Отступ снизу, чтобы контент не уезжал под фиксированный таб-бар */
+.has-tabbar {
+  padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 12px);
+}
+
+.has-cta {
+  padding-bottom: calc(76px + var(--safe-bottom));
+}

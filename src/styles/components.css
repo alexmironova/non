@@ -1,0 +1,1760 @@
+/* ==========================================================================
+   Компоненты интерфейса
+   ========================================================================== */
+
+/* --- Шапки ---------------------------------------------------------------- */
+.app-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--head-top) var(--gutter) 12px;
+}
+
+.nav-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 52px;
+  padding: var(--head-top) 8px 10px;
+}
+.nav-head .nh-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+.nav-head .nh-spacer {
+  flex: 1;
+}
+/* Залипающая шапка — как в нативном приложении при скролле */
+.nav-head.sticky {
+  position: sticky;
+  top: var(--safe-top);
+  z-index: 20;
+  background: var(--bg);
+}
+
+.search-pill {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.app-head .search-pill {
+  flex: 1;
+  min-width: 0;
+}
+
+.ic-btn {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--text);
+  position: relative;
+  transition: background 0.15s;
+}
+.ic-btn:active {
+  background: var(--surface-3);
+}
+.ic-btn.ghost {
+  background: transparent;
+}
+.ic-btn .badge {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+}
+
+/* --- Аватары -------------------------------------------------------------- */
+.avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--yellow);
+  color: var(--dark);
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  overflow: hidden;
+}
+.avatar.s40 { width: 40px; height: 40px; font-size: 15px; }
+.avatar.s48 { width: 48px; height: 48px; font-size: 17px; }
+.avatar.s56 { width: 56px; height: 56px; font-size: 19px; }
+.avatar.s64 { width: 64px; height: 64px; font-size: 22px; }
+.avatar.s72 { width: 72px; height: 72px; font-size: 26px; }
+.avatar.blue { background: #1b3a63; color: #8cbcff; }
+.avatar.green { background: #12402a; color: #4ee08c; }
+.avatar.purple { background: #2e2358; color: #bda4ff; }
+.avatar.gray { background: var(--surface-3); color: var(--text-2); }
+
+/* --- Секции и карточки ---------------------------------------------------- */
+.section {
+  padding: 0 var(--gutter);
+  margin-bottom: var(--s6);
+}
+.section.flush {
+  padding: 0;
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 12px;
+}
+.section.flush .section-head {
+  padding: 0 var(--gutter) 12px;
+}
+.section-head h2 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+}
+.section-head .link {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--r-m);
+  overflow: hidden;
+}
+.card.pad {
+  padding: var(--s4);
+}
+
+/* --- Списки --------------------------------------------------------------- */
+.list {
+  background: var(--surface);
+  border-radius: var(--r-m);
+  overflow: hidden;
+}
+.list.inset {
+  margin: 0 var(--gutter);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 10px var(--s4);
+  position: relative;
+  text-align: left;
+  transition: background 0.12s;
+}
+/* Подсветка при нажатии — только у строк, которые действительно нажимаются.
+   Справочные строки (дата, счёт, категория, код) рисуются как div и ведут
+   себя как обычный текст. */
+button.row:active {
+  background: var(--surface-2);
+}
+.list .row + .row::before {
+  content: '';
+  position: absolute;
+  left: 68px;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: var(--line);
+}
+.row-txt {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+.row-title {
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.row-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.row-val {
+  display: block;
+  flex: none;
+  text-align: right;
+}
+.row-amount {
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+}
+.row-note {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--muted);
+}
+
+.pic {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-s);
+  background: var(--surface-3);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+.pic.rounded { border-radius: var(--r-pill); }
+/* Чёрная плашка остаётся чёрной: внутри списка на --surface она читается
+   как «та самая» карта Black, а не как дыра в фоне. */
+.pic.black { background: #0b0b0c; color: #fff; }
+.pic.yellow { background: var(--yellow); color: var(--dark); }
+.pic.blue { background: #16304f; color: var(--blue); }
+.pic.green { background: #103626; color: var(--green); }
+.pic.purple { background: #2a2250; color: var(--purple); }
+.pic.red { background: #3d1d1f; color: var(--red); }
+.pic.orange { background: #3a2a14; color: var(--orange); }
+.pic.gray { background: var(--surface-3); color: var(--text-2); }
+
+.chevron {
+  flex: none;
+  color: #48484a;
+}
+
+.group-label {
+  padding: 20px var(--gutter) 8px;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--muted);
+}
+
+/* --- Горизонтальный скролл ------------------------------------------------ */
+.hscroll {
+  display: flex;
+  gap: 8px;
+  padding: 0 var(--gutter) 4px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  /* Без scroll-padding снэп прилипает к краю контейнера и «съедает»
+     боковой отступ: первая карточка упирается в край экрана. */
+  scroll-padding-left: var(--gutter);
+  scroll-padding-right: var(--gutter);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.hscroll::-webkit-scrollbar {
+  display: none;
+}
+.hscroll > * {
+  scroll-snap-align: start;
+}
+/* Обводка сторис выступает на 2 px с каждой стороны — зазор увеличен,
+   иначе соседние плитки почти соприкасаются. */
+.hscroll.stories {
+  gap: 12px;
+}
+
+.story {
+  position: relative;
+  flex: none;
+  /* Квадрат. 84 px: в 393 px экрана помещается четыре плитки с отступами,
+     ряд читается как плотная лента, а не как крупные карточки. */
+  width: 84px;
+  height: 84px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border-radius: var(--r-m);
+  color: #fff;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+.cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Плитка с готовым артом: у картинки свои поля, текст и скруглённые углы,
+   поэтому градиентная подложка убирается — иначе она просвечивала бы
+   сквозь прозрачные углы PNG. */
+.story.art {
+  padding: 0;
+  background: none;
+  overflow: visible;
+  /* Синяя рамка — она была на оригинальных плитках, но при вырезании ушла
+     вместе с фоном. Рисуем её стилем, так она чище и не мылится. */
+  border: 2px solid var(--story-ring);
+  /* 20, а не 19: рамка съедает по 2 px с каждой стороны, картинка внутри
+     становится 80 px, и её прозрачные углы ложатся по радиусу 18 (те же
+     23% от стороны, с которыми резалась маска). Внутренний радиус рамки
+     равен внешнему минус её толщина, поэтому снаружи нужно 18 + 2. */
+  border-radius: 20px;
+}
+
+.story:not(.art)::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 70%;
+  z-index: 0;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.45));
+}
+.story span {
+  position: relative;
+  z-index: 1;
+}
+.story .ring {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  display: grid;
+  place-items: center;
+}
+
+/* --- Чипы и сегменты ------------------------------------------------------ */
+.chips {
+  display: flex;
+  gap: 8px;
+  padding: 0 var(--gutter) 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ряд пресетов с кнопкой настроек. Чипы прокручиваются, шестерёнка стоит
+   на месте — внутри прокрутки она уезжала бы за край вместе с ними. */
+.chips-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 var(--gutter) 4px;
+}
+.chips-row .chips {
+  flex: 1;
+  min-width: 0;
+  padding: 0 0 0 var(--gutter);
+  margin-left: calc(var(--gutter) * -1);
+}
+/* Под рост чипа, а не под 40px иконочной кнопки из шапки */
+.chips-row .ic-btn {
+  width: 36px;
+  height: 36px;
+}
+.chip {
+  flex: none;
+  height: 36px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.chip.active {
+  background: var(--contrast);
+  color: var(--on-contrast);
+}
+
+.segmented {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  margin: 0 var(--gutter) 16px;
+  background: var(--surface-3);
+  border-radius: var(--r-pill);
+}
+.segmented button {
+  flex: 1;
+  height: 36px;
+  border-radius: var(--r-pill);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+.segmented button.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--sh-1);
+}
+
+/* --- Кнопки --------------------------------------------------------------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 52px;
+  padding: 0 20px;
+  border-radius: var(--r-m);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  transition: background 0.15s, transform 0.08s;
+}
+.btn:active {
+  transform: scale(0.985);
+}
+.btn-primary {
+  background: var(--yellow);
+  color: var(--dark);
+}
+.btn-primary:active {
+  background: var(--yellow-press);
+}
+.btn-secondary {
+  background: var(--surface-3);
+  color: var(--text);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--blue);
+}
+.btn.sm {
+  height: 40px;
+  font-size: 15px;
+  border-radius: var(--r-s);
+}
+.btn:disabled {
+  background: var(--surface-3);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px 8px;
+  padding: 0 var(--gutter);
+}
+.quick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  text-align: center;
+}
+.quick .qi {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-m);
+  background: var(--surface);
+  color: var(--text);
+}
+.quick .qi.yellow {
+  background: var(--yellow);
+  color: var(--dark);
+}
+.quick .ql {
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--text-2);
+}
+
+/* --- Банковская карта ----------------------------------------------------- */
+.bank-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.586;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: var(--r-l);
+  color: #fff;
+  overflow: hidden;
+  box-shadow: var(--sh-2);
+}
+.bank-card::before {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -60px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.14), transparent 70%);
+}
+/* Карта с готовым артом: своей подложки и блика у неё нет — арт закрывает
+   карточку целиком, а текст снизу читается по тёмной растяжке */
+.bank-card.art {
+  background: #0d0f1a;
+  justify-content: flex-end;
+}
+.bank-card.art::before {
+  display: none;
+}
+.bc-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.bank-card.art .bc-foot {
+  position: relative;
+  z-index: 1;
+}
+.bank-card.art .bc-foot::before {
+  content: '';
+  position: absolute;
+  inset: -18px -18px -18px -18px;
+  background: linear-gradient(to top, rgba(6, 8, 18, 0.85), transparent);
+  z-index: -1;
+}
+.bank-card.black {
+  background: linear-gradient(145deg, #2b2b30, #101013 60%);
+}
+.bank-card.platinum {
+  background: linear-gradient(145deg, #6e7378, #3a3d41);
+}
+.bc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.bc-logo {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+.bc-num {
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  opacity: 0.75;
+}
+.bc-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.bc-bal {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+/* --- Баннеры и офферы ----------------------------------------------------- */
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--r-m);
+  background: var(--yellow);
+  color: var(--dark);
+  text-align: left;
+}
+.banner.dark {
+  background: var(--contrast);
+  color: var(--on-contrast);
+}
+.banner.soft {
+  background: #1b2a4d;
+  color: #cfe0ff;
+}
+.banner-txt {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+.banner-txt h3 {
+  margin-bottom: 4px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.banner-txt p {
+  font-size: 13px;
+  line-height: 17px;
+  opacity: 0.72;
+}
+
+.offer {
+  flex: none;
+  width: 168px;
+  background: var(--surface);
+  border-radius: var(--r-m);
+  overflow: hidden;
+  text-align: left;
+}
+.offer .cover {
+  position: relative;
+  height: 96px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10px;
+}
+.offer .cashback {
+  position: relative;
+  z-index: 1;
+  padding: 4px 8px;
+  border-radius: var(--r-pill);
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.offer .ob {
+  display: block;
+  padding: 10px 12px 14px;
+}
+.offer .ob h4 {
+  margin-bottom: 3px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+}
+.offer .ob p {
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--muted);
+}
+
+/* Градиенты-заглушки вместо фотографий */
+.g1 { background: linear-gradient(135deg, #ffd166, #ff8a3d); }
+.g2 { background: linear-gradient(135deg, #6ec6ff, #2e6be6); }
+.g3 { background: linear-gradient(135deg, #9be38f, #20a86b); }
+.g4 { background: linear-gradient(135deg, #c9a7ff, #6e3dd4); }
+.g5 { background: linear-gradient(135deg, #ff9aa9, #e8355a); }
+.g6 { background: linear-gradient(135deg, #8e9aaf, #3b4457); }
+
+/* --- Таб-бар -------------------------------------------------------------- */
+.tabbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-start;
+  height: calc(var(--tabbar-h) + var(--safe-bottom));
+  padding: 6px 4px var(--safe-bottom);
+  background: var(--tabbar-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line);
+}
+.tab {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--muted);
+}
+.tab .tl {
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+}
+.tab.active {
+  color: var(--text);
+}
+.tab .dot {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  margin-left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid var(--surface);
+}
+
+/* --- Клавиатура и ввод ---------------------------------------------------- */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 8px;
+  padding: 8px var(--s5) 16px;
+}
+.key {
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-m);
+  background: var(--surface);
+  box-shadow: var(--sh-1);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+  transition: background 0.1s, transform 0.06s;
+}
+.key:active {
+  background: var(--surface-3);
+  transform: scale(0.96);
+}
+.key.flat {
+  background: transparent;
+  box-shadow: none;
+}
+
+.pin-dots {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 28px 0 32px;
+}
+.pin-dots i {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface-3);
+  transition: background 0.15s, transform 0.15s;
+}
+.pin-dots i.on {
+  background: var(--contrast);
+  transform: scale(1.1);
+}
+
+.amount-input {
+  padding: 24px 16px 8px;
+  text-align: center;
+}
+.amount-input .val {
+  font-size: 44px;
+  line-height: 48px;
+  font-weight: 700;
+  letter-spacing: -1.4px;
+}
+.amount-input .val .cur {
+  color: var(--muted);
+}
+.amount-input .hint {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.field {
+  margin: 0 var(--gutter) 12px;
+  padding: 12px var(--s4);
+  border-radius: var(--r-m);
+  background: var(--surface);
+}
+.field label {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.field input {
+  width: 100%;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+.field input::placeholder {
+  color: #5a5a5f;
+  font-weight: 400;
+}
+.field.inline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.switch {
+  width: 48px;
+  height: 30px;
+  flex: none;
+  position: relative;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  transition: background 0.18s;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--sh-1);
+  transition: transform 0.18s;
+}
+.switch.on {
+  background: var(--green);
+}
+.switch.on::after {
+  transform: translateX(18px);
+}
+
+/* --- Липкий CTA ----------------------------------------------------------- */
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  padding: 12px var(--gutter) calc(12px + var(--safe-bottom));
+  background: var(--bg);
+  box-shadow: var(--sh-3);
+}
+.sticky-cta.above-tabbar {
+  bottom: calc(var(--tabbar-h) + var(--safe-bottom));
+  padding-bottom: 12px;
+}
+.cta-row {
+  display: flex;
+  gap: 8px;
+}
+
+/* --- Чат ------------------------------------------------------------------ */
+.chat-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px var(--gutter) 12px;
+}
+.day-div {
+  margin: 8px 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+.bubble {
+  max-width: 78%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 20px;
+}
+.bubble.in {
+  align-self: flex-start;
+  background: var(--surface);
+  border-bottom-left-radius: 6px;
+}
+.bubble.out {
+  align-self: flex-end;
+  background: var(--yellow);
+  /* Чернила на жёлтом задаются явно: унаследованный --text белый,
+     и без этого исходящее сообщение было бы нечитаемым. */
+  color: var(--dark);
+  border-bottom-right-radius: 6px;
+}
+.bubble .time {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+}
+.bubble.out .time {
+  color: rgba(25, 25, 27, 0.45);
+}
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 0 2px;
+}
+.quick-replies .qr {
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--blue);
+}
+.composer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Над таб-баром, иначе он перекрывает поле ввода */
+  bottom: calc(var(--tabbar-h) + var(--safe-bottom));
+  padding: 10px var(--gutter);
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+.composer .cf {
+  flex: 1;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: var(--r-pill);
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 15px;
+}
+.composer .cf input {
+  width: 100%;
+  color: var(--text);
+}
+
+/* --- Графики и прочее ----------------------------------------------------- */
+.donut-wrap {
+  display: grid;
+  place-items: center;
+  padding: 8px 0 20px;
+  position: relative;
+}
+.donut-center {
+  position: absolute;
+  text-align: center;
+}
+.donut-center .dc-sum {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+.donut-center .dc-lab {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 120px;
+}
+.bars .bar {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+.bars .bar i {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  background: var(--surface-3);
+}
+.bars .bar.active i {
+  background: var(--yellow);
+}
+.bars .bar span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Подпись под итогами в карточке: период слева, счётчик справа.
+   Отделена линией, а не вторым блоком, — иначе карточка итогов выписки
+   выглядела бы выше и тяжелее такой же карточки в «Истории». */
+.card-split {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+/* Двенадцать столбиков в год не влезают с обычным зазором: подписи месяцев
+   шире самих столбиков и наезжают друг на друга. */
+.bars.dense {
+  gap: 4px;
+}
+.bars.dense .bar i {
+  border-radius: 4px;
+}
+.bars.dense .bar span {
+  font-size: 10px;
+}
+
+.sum-head {
+  padding: 4px var(--gutter) 16px;
+}
+.sum-head .label {
+  font-size: 14px;
+  color: var(--muted);
+}
+.sum-head .value {
+  margin-top: 2px;
+  font-size: 34px;
+  line-height: 40px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+.sum-head .delta {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.progress {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface-3);
+  overflow: hidden;
+}
+.progress i {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--green);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: var(--r-xs);
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 500;
+}
+.tag.green { background: #103626; color: var(--green); }
+.tag.yellow { background: #3a2f0d; color: #e8c84a; }
+
+.hero-logo {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background: var(--yellow);
+  color: var(--dark);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+/* Крупная иконка статуса на экране успеха */
+.status-badge {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+}
+
+/* ==========================================================================
+   Главный экран. Собран по эталонному скриншоту приложения: шапка с именем,
+   поле поиска, лента сторис, две карточки в ряд, быстрые действия, карточки
+   продуктов и светлый промо-баннер.
+   ========================================================================== */
+
+.home-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--head-top) var(--gutter) 12px;
+}
+.home-head .hh-spacer {
+  flex: 1;
+}
+.home-name {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+.ic-btn.violet {
+  background: var(--violet);
+  color: #fff;
+}
+
+/* Поиск здесь — прямоугольник со скруглением, а не пилюля из шапки */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  /* Кнопка сжимается по содержимому даже как flex-контейнер, поэтому
+     ширина считается явно: вся строка минус боковые поля. */
+  width: calc(100% - var(--gutter) * 2);
+  margin: 0 var(--gutter) 24px;
+  padding: 0 14px;
+  border-radius: var(--r-m);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* --- Две карточки в ряд --------------------------------------------------- */
+.duo {
+  display: flex;
+  gap: 8px;
+  padding: 0 var(--gutter);
+  margin-bottom: 16px;
+}
+.duo > * {
+  /* flex-basis 0 — иначе более длинный заголовок растягивает свою половину */
+  flex: 1 1 0;
+  min-width: 0;
+}
+.duo-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 134px;
+  padding: 16px;
+  border-radius: var(--r-l);
+  background: var(--surface);
+  text-align: left;
+}
+.duo-card h3 {
+  font-size: 19px;
+  line-height: 23px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+.duo-card .dc-sub {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--text-2);
+}
+.duo-card .meter {
+  margin-top: auto;
+  height: 10px;
+  border-radius: var(--r-pill);
+  background: var(--cyan);
+}
+.duo-card .dc-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+.brand-row {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+.brand {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+/* --- Быстрые действия: широкая плашка, подпись под ней --------------------- */
+.act-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 0 var(--gutter);
+  margin-bottom: 20px;
+}
+.act {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.act-tile {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 56px;
+  border-radius: var(--r-m);
+  background: var(--surface);
+  color: var(--blue);
+  transition: background 0.12s;
+}
+.act:active .act-tile {
+  background: var(--surface-2);
+}
+.act-lab {
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+}
+
+/* --- Карточка продукта ----------------------------------------------------- */
+.acct {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: start;
+  gap: 4px 12px;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 16px;
+  border-radius: var(--r-l);
+  background: var(--surface);
+  text-align: left;
+}
+.acct-ic {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: 600;
+}
+.acct-ic.blue { background: var(--blue); color: #fff; }
+.acct-ic.green { background: var(--green); color: #06301c; }
+.acct-ic.purple { background: var(--purple); color: #1e1140; }
+.acct-ic.yellow { background: var(--yellow); color: var(--dark); }
+.acct-ic.orange { background: var(--orange); color: #3a1f00; }
+.acct-sum {
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.acct-name {
+  display: block;
+  margin-top: 2px;
+  font-size: 16px;
+  color: var(--text-2);
+}
+.acct-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: var(--r-pill);
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-size: 14px;
+  white-space: nowrap;
+}
+/* Миниатюра пластика под текстом, выровнена по левому краю суммы */
+.acct-mini {
+  grid-column: 2 / 4;
+  display: flex;
+  align-items: flex-end;
+  width: 64px;
+  height: 40px;
+  margin-top: 10px;
+  padding: 4px 6px;
+  border-radius: 8px;
+  /* Тёмный «пластик». Яркие заглушки g* тут не годятся: миниатюра
+     должна читаться как карта, а не как цветной прямоугольник. */
+  background: linear-gradient(145deg, #343a6b, #171a2c);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.acct-mini.gray {
+  background: linear-gradient(145deg, #53565d, #26282d);
+}
+
+/* Миниатюра с артом карты. Арт уходит в размытый фон, а не показывается
+   как картинка: в 64×40 его не разглядеть, зато по цвету и силуэту карта
+   узнаётся. Тёмная подложка поверх говорит, что это именно фон, и держит
+   контраст номера — иначе он тонет в светлых местах арта. */
+.acct-mini.art {
+  position: relative;
+  overflow: hidden;
+  background: #171a2c;
+}
+.acct-mini-art {
+  position: absolute;
+  /* С запасом за края: blur иначе размывает их в прозрачность и по периметру
+     миниатюры остаётся светлая кайма */
+  inset: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  object-fit: cover;
+  filter: blur(2.5px);
+}
+.acct-mini.art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 24, 0.42);
+}
+.acct-mini-num {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Светлый промо-баннер -------------------------------------------------- */
+.promo {
+  position: relative;
+  margin: 16px 0 24px;
+  border-radius: var(--r-l);
+  background: #e6e6e8;
+  color: var(--dark);
+}
+.promo h3 {
+  font-size: 19px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+.promo p {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  color: #5c5c63;
+}
+.promo .promo-x {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(25, 25, 27, 0.12);
+  color: var(--dark);
+}
+
+/* --- Подсказка и полноэкранные слои ---------------------------------------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 16px);
+  z-index: 80;
+  transform: translateX(-50%);
+  max-width: calc(100% - 48px);
+  padding: 12px 18px;
+  border-radius: var(--r-pill);
+  background: var(--contrast);
+  color: var(--on-contrast);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: var(--sh-2);
+  animation: toast-in 0.18s ease-out;
+}
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Перекрывает в том числе таб-бар — как нативный модальный экран */
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--safe-top) + 24px) 16px calc(var(--safe-bottom) + 24px);
+  background: #000;
+}
+.viewer-close {
+  position: absolute;
+  top: calc(var(--safe-top) + 28px);
+  right: 12px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+.qr-frame {
+  display: grid;
+  place-items: center;
+  width: 220px;
+  height: 220px;
+  border-radius: var(--r-l);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.5);
+}
+.qr-hint {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+}
+
+/* --- Промо: крестик вынесен из кнопки, иначе он ловил нажатие баннера ------ */
+.promo-body {
+  display: block;
+  width: 100%;
+  padding: 18px 60px 18px 18px;
+  color: inherit;
+  text-align: left;
+}
+
+/* ==========================================================================
+   Экран «Платежи». Собран по эталонному скриншоту: крупный заголовок,
+   поиск, карточка избранного с лентой плиток, два действия в ряд и
+   карточка перевода по телефону.
+   ========================================================================== */
+
+.big-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--head-top) var(--gutter) 12px;
+}
+.big-head h1 {
+  flex: 1;
+  min-width: 0;
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+/* Шапка внутри карточки: заголовок и ссылка справа */
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.card-head h2 {
+  font-size: 19px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+.card-head .link {
+  color: var(--blue);
+  font-size: 16px;
+}
+
+/* Два действия в ряд */
+.pay-duo {
+  display: flex;
+  gap: 8px;
+  padding: 0 var(--gutter);
+  margin-bottom: 16px;
+}
+.pay-duo > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.pay-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 14px;
+  border-radius: var(--r-l);
+  background: var(--surface);
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+}
+.pay-btn .pb-ic {
+  flex: none;
+  color: var(--blue);
+}
+.pay-btn .pb-badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Перевод по телефону */
+.phone-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: var(--r-m);
+  background: var(--surface-3);
+  color: var(--muted);
+  font-size: 16px;
+  text-align: left;
+}
+/* Ряд получателей: «Контакты» и избранные. Прокручивается, если имён
+   станет больше, чем помещается в ширину карточки. */
+.pick-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.pick-row::-webkit-scrollbar {
+  display: none;
+}
+.round-act {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  width: 56px;
+}
+.round-act .ra-ic {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+}
+.round-act .ra-lab {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* --- Экран «На оплату» ----------------------------------------------------- */
+.bill-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.bill-txt {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+.bill-txt .t-body-m,
+.bill-txt .t-cap {
+  display: block;
+}
+.bill-sum {
+  margin-top: 16px;
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+/* --- Шторка снизу ---------------------------------------------------------- */
+.sheet-back {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  background: rgba(0, 0, 0, 0.6);
+}
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 86;
+  display: flex;
+  flex-direction: column;
+  max-height: 72dvh;
+  padding: 8px 0 calc(8px + var(--safe-bottom));
+  border-radius: var(--r-l) var(--r-l) 0 0;
+  background: var(--surface);
+  animation: sheet-in 0.2s ease-out;
+}
+@keyframes sheet-in {
+  from { transform: translateY(20px); opacity: 0.5; }
+  to { transform: none; opacity: 1; }
+}
+.sheet-grip {
+  width: 36px;
+  height: 4px;
+  margin: 0 auto 8px;
+  border-radius: 2px;
+  background: var(--surface-3);
+}
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px var(--gutter) 8px;
+}
+.sheet-head h2 {
+  font-size: 19px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+.sheet-body {
+  overflow-y: auto;
+}
+/* Список внутри шторки занимает всю её ширину — свои углы не нужны */
+.sheet-body .list {
+  border-radius: 0;
+}
+
+/* --- Календарь ------------------------------------------------------------
+   Живёт в шторке выбора периода. Ячейки квадратные и скруглённые, как всё
+   остальное в интерфейсе; края диапазона залиты `--contrast`, тем же, что
+   активный чип, — выбранное одинаково выглядит везде. */
+.cal {
+  padding: 0 var(--gutter) 4px;
+}
+.cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 0 10px;
+}
+.cal-month {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.cal-head .ic-btn:disabled {
+  color: var(--surface-3);
+}
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.cal-wd {
+  height: 22px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+.cal-blank {
+  aspect-ratio: 1;
+}
+.cal-day {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-s);
+  font-size: 15px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  transition: background 0.18s, color 0.18s;
+}
+.cal-day:disabled {
+  color: var(--surface-3);
+}
+.cal-day.in-range {
+  background: var(--surface-2);
+}
+.cal-day.is-edge {
+  background: var(--contrast);
+  color: var(--on-contrast);
+  font-weight: 700;
+}
+
+/* Подвал шторки: что выбрано и кнопка. Прижат книзу, чтобы кнопка не
+   прыгала по высоте, когда в месяце пять недель вместо шести. */
+.cal-foot {
+  padding: 16px var(--gutter) 12px;
+}
+.cal-foot .t-cap {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Поле внутри шторки: её подложка — уже `--surface`, и поле на ней
+   сливалось бы с фоном. Ступенью выше, как плашки внутри карточек. */
+.sheet-body .field {
+  background: var(--surface-2);
+}
+
+/* `.field`, работающее как кнопка выбора: иначе сжимается по содержимому */
+.field.pick {
+  width: calc(100% - var(--gutter) * 2);
+  text-align: left;
+}
+
+/* Разделитель между «Откуда» и «Куда»: кнопка обмена или просто штрих */
+.swap-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+}
+.swap-dash {
+  width: 2px;
+  height: 20px;
+  border-radius: 1px;
+  background: var(--surface-3);
+}
